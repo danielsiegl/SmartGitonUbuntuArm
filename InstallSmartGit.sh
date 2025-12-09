@@ -120,50 +120,8 @@ else
   echo "Java found: $JAVA_VERSION"
 fi
 
-echo "=== Creating smartgit launcher ==="
-if [[ "$IS_WSL" == true ]]; then
-  # In WSL, create launcher in user's local bin
-  mkdir -p "$HOME/.local/bin"
-  LAUNCHER="$HOME/.local/bin/smartgit"
-  
-  cat > "$LAUNCHER" <<EOF
-#!/bin/bash
-exec $INSTALL_DIR/bin/smartgit "\$@"
-EOF
-  
-  chmod +x "$LAUNCHER"
-  
-  # Add to PATH if not already there
-  if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
-    echo "Added $HOME/.local/bin to PATH in .bashrc"
-  fi
-else
-  # Native Linux - use /usr/local/bin
-  LAUNCHER="/usr/local/bin/smartgit"
-  
-  $SUDO bash -c "cat > $LAUNCHER" <<EOF
-#!/bin/bash
-exec $INSTALL_DIR/bin/smartgit "\$@"
-EOF
-  
-  $SUDO chmod +x "$LAUNCHER"
-fi
-
 echo
 echo "=== Installation complete! ==="
 echo "SmartGit installed to: $INSTALL_DIR"
-if [[ "$IS_WSL" == true ]]; then
-  echo "Launcher created at: $LAUNCHER"
-  if [[ -z "$JAVA_HOME" ]]; then
-    echo ""
-    echo "⚠️  IMPORTANT: Java is not installed!"
-    echo "Install Java before running SmartGit:"
-    echo "  sudo apt-get update && sudo apt-get install -y openjdk-17-jdk"
-  else
-    echo "Restart your shell or run: source ~/.bashrc"
-    echo "Then start SmartGit by running: smartgit"
-  fi
-else
-  echo "Start SmartGit by running: smartgit"
-fi
+echo "To run SmartGit, execute: $INSTALL_DIR/bin/smartgit"
+
