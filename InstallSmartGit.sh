@@ -32,8 +32,8 @@ if [[ "$IS_WSL" == false ]]; then
   echo "=== Updating package lists ==="
   $SUDO apt-get update -y
 
-  echo "=== Installing latest Git, Git LFS, and OpenJDK 17 ==="
-  $SUDO apt-get install -y git git-lfs openjdk-17-jdk
+  echo "=== Installing latest Git, Git LFS, and OpenJDK 21 ==="
+  $SUDO apt-get install -y git git-lfs openjdk-21-jdk
   
   echo "=== Installing Git LFS ==="
   git lfs install
@@ -74,7 +74,7 @@ else
   
   if ! command -v java &> /dev/null; then
     echo "✗ java not found"
-    MISSING_PACKAGES+=(openjdk-17-jdk)
+    MISSING_PACKAGES+=(openjdk-21-jdk)
   else
     echo "✓ java found"
   fi
@@ -107,12 +107,12 @@ tar -xzf "$TMP_TGZ" -C "$(dirname "$INSTALL_DIR")"
 # Ensure correct permissions
 chmod -R u+rwX "$INSTALL_DIR"
 
-echo "=== Detecting JAVA_HOME for OpenJDK 17 ==="
+echo "=== Detecting JAVA_HOME for OpenJDK 21 ==="
 if ! command -v java &> /dev/null; then
   echo "WARNING: Java not found. SmartGit requires Java to run."
   if [[ "$IS_WSL" == true ]]; then
     echo "In WSL, you can install Java with:"
-    echo "  sudo apt-get update && sudo apt-get install -y openjdk-17-jdk"
+    echo "  sudo apt-get update && sudo apt-get install -y openjdk-21-jdk"
     echo "Or download from: https://adoptium.net/"
   fi
   echo "Skipping Java configuration..."
@@ -122,7 +122,7 @@ else
   JAVA_HOME="$(dirname "$(dirname "$JAVA_BIN_PATH")")"
   echo "Detected JAVA_HOME = $JAVA_HOME"
   
-  echo "=== Configuring SmartGit to use OpenJDK 17 ==="
+  echo "=== Configuring SmartGit to use OpenJDK 21 ==="
   CONFIG_DIR="$HOME/.config/smartgit"
   VMOPTIONS_FILE="$CONFIG_DIR/smartgit.vmoptions"
   mkdir -p "$CONFIG_DIR"
