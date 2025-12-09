@@ -32,8 +32,8 @@ if [[ "$IS_WSL" == false ]]; then
   echo "=== Updating package lists ==="
   $SUDO apt-get update -y
 
-  echo "=== Installing latest Git and OpenJDK 11 ==="
-  $SUDO apt-get install -y git openjdk-11-jdk
+  echo "=== Installing latest Git and OpenJDK 17 ==="
+  $SUDO apt-get install -y git openjdk-17-jdk
 else
   echo "=== WSL Environment - Installing packages via apt ==="
   echo "Checking for required commands..."
@@ -63,7 +63,7 @@ else
   
   if ! command -v java &> /dev/null; then
     echo "✗ java not found"
-    MISSING_PACKAGES+=(openjdk-11-jdk)
+    MISSING_PACKAGES+=(openjdk-17-jdk)
   else
     echo "✓ java found"
   fi
@@ -90,12 +90,12 @@ tar -xzf "$TMP_TGZ" -C "$(dirname "$INSTALL_DIR")"
 # Ensure correct permissions
 chmod -R u+rwX "$INSTALL_DIR"
 
-echo "=== Detecting JAVA_HOME for OpenJDK 11 ==="
+echo "=== Detecting JAVA_HOME for OpenJDK 17 ==="
 if ! command -v java &> /dev/null; then
   echo "WARNING: Java not found. SmartGit requires Java to run."
   if [[ "$IS_WSL" == true ]]; then
     echo "In WSL, you can install Java with:"
-    echo "  sudo apt-get update && sudo apt-get install -y openjdk-11-jdk"
+    echo "  sudo apt-get update && sudo apt-get install -y openjdk-17-jdk"
     echo "Or download from: https://adoptium.net/"
   fi
   echo "Skipping Java configuration..."
@@ -105,7 +105,7 @@ else
   JAVA_HOME="$(dirname "$(dirname "$JAVA_BIN_PATH")")"
   echo "Detected JAVA_HOME = $JAVA_HOME"
   
-  echo "=== Configuring SmartGit to use OpenJDK 11 ==="
+  echo "=== Configuring SmartGit to use OpenJDK 17 ==="
   CONFIG_DIR="$HOME/.config/smartgit"
   VMOPTIONS_FILE="$CONFIG_DIR/smartgit.vmoptions"
   mkdir -p "$CONFIG_DIR"
@@ -161,7 +161,7 @@ if [[ "$IS_WSL" == true ]]; then
     echo ""
     echo "⚠️  IMPORTANT: Java is not installed!"
     echo "Install Java before running SmartGit:"
-    echo "  sudo apt-get update && sudo apt-get install -y openjdk-11-jdk"
+    echo "  sudo apt-get update && sudo apt-get install -y openjdk-17-jdk"
   else
     echo "Restart your shell or run: source ~/.bashrc"
     echo "Then start SmartGit by running: smartgit"
