@@ -107,7 +107,7 @@ tar -xzf "$TMP_TGZ" -C "$(dirname "$INSTALL_DIR")"
 # Ensure correct permissions
 chmod -R u+rwX "$INSTALL_DIR"
 
-echo "=== Detecting JAVA_HOME for OpenJDK 21 ==="
+echo "=== Verifying Java installation ==="
 if ! command -v java &> /dev/null; then
   echo "WARNING: Java not found. SmartGit requires Java to run."
   if [[ "$IS_WSL" == true ]]; then
@@ -115,28 +115,9 @@ if ! command -v java &> /dev/null; then
     echo "  sudo apt-get update && sudo apt-get install -y openjdk-21-jdk"
     echo "Or download from: https://adoptium.net/"
   fi
-  echo "Skipping Java configuration..."
-  JAVA_HOME=""
 else
-  JAVA_BIN_PATH="$(readlink -f "$(command -v java)")"
-  JAVA_HOME="$(dirname "$(dirname "$JAVA_BIN_PATH")")"
-  echo "Detected JAVA_HOME = $JAVA_HOME"
-  
-  echo "=== Configuring SmartGit to use OpenJDK 21 ==="
-  CONFIG_DIR="$HOME/.config/smartgit"
-  VMOPTIONS_FILE="$CONFIG_DIR/smartgit.vmoptions"
-  mkdir -p "$CONFIG_DIR"
-
-  # Remove any existing jre= entry
-  if [[ -f "$VMOPTIONS_FILE" ]]; then
-    sed -i '/^jre=/d' "$VMOPTIONS_FILE"
-  fi
-
-  # Add new Java path
-  echo "jre=$JAVA_HOME" >> "$VMOPTIONS_FILE"
-
-  echo "Created $VMOPTIONS_FILE:"
-  cat "$VMOPTIONS_FILE"
+  JAVA_VERSION=$(java -version 2>&1 | head -n 1)
+  echo "Java found: $JAVA_VERSION"
 fi
 
 echo "=== Creating smartgit launcher ==="
