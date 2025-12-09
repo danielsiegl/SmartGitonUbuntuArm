@@ -32,8 +32,11 @@ if [[ "$IS_WSL" == false ]]; then
   echo "=== Updating package lists ==="
   $SUDO apt-get update -y
 
-  echo "=== Installing latest Git and OpenJDK 17 ==="
-  $SUDO apt-get install -y git openjdk-17-jdk
+  echo "=== Installing latest Git, Git LFS, and OpenJDK 17 ==="
+  $SUDO apt-get install -y git git-lfs openjdk-17-jdk
+  
+  echo "=== Installing Git LFS ==="
+  git lfs install
 else
   echo "=== WSL Environment - Installing packages via apt ==="
   echo "Checking for required commands..."
@@ -61,6 +64,14 @@ else
     echo "✓ git found"
   fi
   
+  # Check for git-lfs separately since it's an extension
+  if ! git lfs version &> /dev/null; then
+    echo "✗ git-lfs not found"
+    MISSING_PACKAGES+=(git-lfs)
+  else
+    echo "✓ git-lfs found"
+  fi
+  
   if ! command -v java &> /dev/null; then
     echo "✗ java not found"
     MISSING_PACKAGES+=(openjdk-17-jdk)
@@ -74,6 +85,12 @@ else
     echo "This requires sudo access..."
     /usr/bin/sudo /usr/bin/apt-get update -y
     /usr/bin/sudo /usr/bin/apt-get install -y "${MISSING_PACKAGES[@]}"
+    
+    # Install git-lfs if it was just installed
+    if [[ " ${MISSING_PACKAGES[*]} " =~ " git-lfs " ]]; then
+      echo "=== Installing Git LFS ==="
+      git lfs install
+    fi
   else
     echo "All required packages are already installed"
   fi
