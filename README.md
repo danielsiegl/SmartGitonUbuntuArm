@@ -14,7 +14,7 @@ SmartGit can run on ARM64 or AArch64 based Linux systems as it is a Java applica
 
 #### Git
 Ensure Git and Git LFS are installed on your system.
-
+`git version` should  at least return 2.50.1
 #### Java
 OpenJDK 21 is recommended for running SmartGit on AArch64 architecture.
 
