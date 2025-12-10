@@ -18,6 +18,8 @@ Ensure Git and Git LFS are installed on your system.
 #### Java
 OpenJDK 21 is recommended for running SmartGit on AArch64 architecture.
 
+Either install OpenJDK 21 using, e.g., `apt install openjdk-21-jdk`, or download its tar.gz-bundle from, e.g. [https://docs.microsoft.com/en-us/java/openjdk/download](https://docs.microsoft.com/en-us/java/openjdk/download "https://docs.microsoft.com/en-us/java/openjdk/download") and unpack it, replacing the `jre/` directory inside the SmartGit installation directory.
+
 ### Installation Steps
 
 1. **Download SmartGit**  
