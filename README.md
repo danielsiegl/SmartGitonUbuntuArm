@@ -1,6 +1,8 @@
-# SmartGit 25.1 on Ubuntu 25.10 arm64/aarch64 e.g. Raspberry Pi 5
+# SmartGit 25.1 on Ubuntu 25.10 arm64/aarch64 e.g. Raspberry Pi 5 or Parallels on Apple M1/M2/M3/..
 
-This is our guide to installing SmartGit 25.10 on arm64/aarch64 devices with Ubuntu 25.10. I tested this procedure on a Raspberry 5 - it might work on other Linux/Debian/Ubuntu Versions in a similar fashion - but we only tried it in this combination for now.
+This is our guide to installing SmartGit 25.10 on arm64/aarch64 Linux devices. 
+We tested this procedure on a Raspberry Pi 5 with Ubuntu 25.10 and with Ubuntu 24.04 inside Parallels on a Apple M2 Pro Mac.
+It might work on other Linux/Debian/Ubuntu Versions in a similar fashion - but we only tried it in this combination for now.
 
 ## Preparing the Environment
 
