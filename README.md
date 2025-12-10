@@ -1,26 +1,33 @@
-# SmartGit 25.1 on Ubuntu 25.10 arm64/aarch64 e.g. Raspberry Pi 5 or Parallels on Apple M1/M2/M3/..
+# SmartGit 25.1 on Ubuntu ARM64/AArch64
 
-This is our guide to installing SmartGit 25.10 on arm64/aarch64 Linux devices. 
-We tested this procedure on a Raspberry Pi 5 with Ubuntu 25.10 and with Ubuntu 24.04 inside Parallels on a Apple M2 Pro Mac.
-It might work on other Linux/Debian/Ubuntu Versions in a similar fashion - but we only tried it in this combination for now.
+This guide provides instructions for installing SmartGit 25.1 on ARM64/AArch64 Linux devices. 
+The installation has been tested and verified on:
+- Raspberry Pi 5 with Ubuntu 25.10
+- Ubuntu 24.04 running in Parallels on Apple M2 Pro Mac
 
-## How To
-You can run SmartGit on a arm64 or aarch64 based Linux as SmartGit is a Java application, we just need to provide some essentials in an arm64 version.
+While the procedure should work on other Linux/Debian/Ubuntu versions, compatibility has only been verified with the configurations listed above.
 
-### Git
-Make sure you you have your prefered git and git-lfs installed.
+## Overview
+SmartGit can run on ARM64 or AArch64 based Linux systems as it is a Java application. The installation requires providing ARM64-compatible dependencies.
 
-### Java
-We recommend to install OpenJDK 21 to run SmartGit on aarch64.
+### Prerequisites
 
-### Install SmartGit
-Download and expand the SmartGit `.tar` to your prefered install dir from wwww.smartgit.dev to your system.
+#### Git
+Ensure Git and Git LFS are installed on your system.
 
-### Strip the Installation (Optional)
-You can delete the `/jre` and `/git` directories from your install dir.
+#### Java
+OpenJDK 21 is recommended for running SmartGit on AArch64 architecture.
 
-### Install Shortcut
-From your install dir `/bin` run `add-menuitem.sh` to install the shortcut.
+### Installation Steps
+
+1. **Download SmartGit**  
+   Download and extract the SmartGit `.tar` archive from [www.smartgit.dev](https://www.smartgit.dev) to your preferred installation directory.
+
+2. **Strip Bundled Components (Optional)**  
+   Remove the `/jre` and `/git` directories from your installation directory to use the system-provided versions.
+
+3. **Create Desktop Shortcut**  
+   Execute `add-menuitem.sh` from the `bin` directory within your installation path to create a desktop shortcut.
 
 ## Scripts
 ### Preparing the Environment
