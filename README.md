@@ -8,7 +8,6 @@ See [PrepareEnvironment.sh](PrepareEnvironment.sh)
 
 ```sh
 #!/usr/bin/env bash
-set -euo pipefail
 
 echo "=== Updating package lists and installing prerequisites ==="
 sudo apt-get update -y
@@ -31,11 +30,10 @@ git lfs install
 
 ## Installing SmartGit
 
-See [InstallSmartGitManual.sh](InstallSmartGitarm64.sh)
+See [InstallSmartGitarm64.sh](InstallSmartGitarm64.sh)
 
 ```sh
 #!/usr/bin/env bash
-set -euo pipefail
 
 SMARTGIT_URL="https://download.smartgit.dev/smartgit/smartgit-25_1_100-linux-amd64.tar.gz" # we use the amd64 archive and will modify it to work with arm64
 INSTALL_DIR="/opt/smartgit"
