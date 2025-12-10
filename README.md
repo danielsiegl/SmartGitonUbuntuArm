@@ -4,6 +4,8 @@ This is our guide to installing SmartGit 25.10 on arm64/aarch64 devices with Ubu
 
 ## Preparing the Environment
 
+See [PrepareEnvironment.sh](PrepareEnvironment.sh)
+
 ```sh
 #!/usr/bin/env bash
 set -euo pipefail
@@ -28,6 +30,8 @@ git lfs install
 ```
 
 ## Installing SmartGit
+
+See [InstallSmartGitManual.sh](InstallSmartGitarm64.sh)
 
 ```sh
 #!/usr/bin/env bash
