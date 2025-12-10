@@ -4,7 +4,26 @@ This is our guide to installing SmartGit 25.10 on arm64/aarch64 Linux devices.
 We tested this procedure on a Raspberry Pi 5 with Ubuntu 25.10 and with Ubuntu 24.04 inside Parallels on a Apple M2 Pro Mac.
 It might work on other Linux/Debian/Ubuntu Versions in a similar fashion - but we only tried it in this combination for now.
 
-## Preparing the Environment
+## How To
+You can run SmartGit on a arm64 or aarch64 based Linux as SmartGit is a Java application, we just need to provide some essentials in an arm64 version.
+
+### Git
+Make sure you you have your prefered git and git-lfs installed.
+
+### Java
+We recommend to install OpenJDK 21 to run SmartGit on aarch64.
+
+### Install SmartGit
+Download and expand the SmartGit `.tar` to your prefered install dir from wwww.smartgit.dev to your system.
+
+### Strip the Installation (Optional)
+You can delete the `/jre` and `/git` directories from your install dir.
+
+### Install Shortcut
+From your install dir `/bin` run `add-menuitem.sh` to install the shortcut.
+
+## Scripts
+### Preparing the Environment
 
 See [PrepareEnvironment.sh](PrepareEnvironment.sh)
 
@@ -30,7 +49,7 @@ echo "=== Installing Git LFS ==="
 git lfs install
 ```
 
-## Installing SmartGit
+### Installing SmartGit
 
 See [InstallSmartGitarm64.sh](InstallSmartGitarm64.sh)
 
